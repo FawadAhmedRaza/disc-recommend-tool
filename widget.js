@@ -86,7 +86,7 @@ class DiscWidget {
     closeBtn.addEventListener("click", () => {
       container.innerHTML = `
          <button id="getRecommendationBtn" class="recommendation-btn">
-            Get Recommendation
+          💬 Get Recommendation
          </button>
       `;
       const button = container.querySelector("#getRecommendationBtn");
@@ -225,22 +225,61 @@ class DiscWidget {
           background-color: #f8d7da;
           color: #721c24;
         }
+ .recommendation-btn {
+        background-color: #007bff;
+        color: white;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 2000;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
 
-        .recommendation-btn {
-            background-color: #007bff;
-            color: white;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 2000;
-            border: none;
-            border-radius: 8px; /* Adjusted border radius */
-            padding: 12px 20px; /* Adjusted padding */
-            font-size: 16px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-          }
+      /* Chat-like widget container */
+      .disc-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background-color: #fff;
+        color: #333;
+        padding: 20px;
+        border-radius: 12px;
+        width: 380px;
+        max-height: 70vh; /* Limit height */
+        overflow-y: auto; /* Enable scrolling */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+      }
 
+      /* Step container adjustments */
+      .step {
+        display: none;
+        padding-right: 10px; /* Add space for scrollbar */
+      }
+
+      .step.active {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Ensure form elements fit */
+      input {
+        width: 95%;
+        margin-bottom: 10px;
+      }
+
+      /* Recommendations scroll area */
+      #recommendations {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 15px;
+      }
           /* Loading spinner for Submit button */
           .spinner {
             border: 1px solid #f3f3f3;
@@ -261,22 +300,6 @@ class DiscWidget {
 
           .recommendation-btn:hover {
             background-color: #0056b3;
-          }
-
-          .disc-widget {
-            position: fixed;
-            top: 10%;
-            left: 35%;
-            transfrom:translate(-50%,50%);
-            z-index: 1000;
-            background-color: #fff;
-            color: #333;
-            padding: 20px;
-            padding-right:30px;
-            border-radius: 12px;
-            width: 380px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-family: Arial, sans-serif;
           }
 
           .product {
