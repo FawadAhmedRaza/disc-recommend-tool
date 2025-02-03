@@ -104,45 +104,55 @@ class DiscWidget {
       document.getElementById("prev1"),
       document.getElementById("prev2"),
     ];
-
+  
     let currentStep = 0;
-
+  
     const showStep = (stepIndex) => {
       steps.forEach((step, index) => {
         step.classList.toggle("active", index === stepIndex);
       });
       currentStep = stepIndex;
     };
-
+  
     nextButtons.forEach((button, index) => {
       button.addEventListener("click", () => {
         const step = steps[currentStep];
         const inputs = step.querySelectorAll("input[required]");
         let valid = true;
-
+  
         inputs.forEach((input) => {
           if (!input.value) {
             input.style.border = "1px solid red";
             valid = false;
           } else {
-            input.style.border = "";
+            // Add distance validation for distance fields
+            if (input.id.startsWith('distance')) {
+              const distance = parseInt(input.value, 10);
+              if (isNaN(distance) || distance < 50 || distance > 800) {
+                input.style.border = "1px solid red";
+                valid = false;
+              } else {
+                input.style.border = "";
+              }
+            } else {
+              input.style.border = "";
+            }
           }
         });
-
+  
         if (valid) {
           showStep(index + 1);
         }
       });
     });
-
+  
     prevButtons.forEach((button, index) => {
       button.addEventListener("click", () => showStep(index));
     });
-
+  
     const form = document.querySelector("#discForm");
     form.addEventListener("submit", DiscWidget.handleSubmit);
   }
-
   static async handleSubmit(event) {
     event.preventDefault();
     const submitBtn = document.getElementById("submitBtn");
